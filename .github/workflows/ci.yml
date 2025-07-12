@@ -5,6 +5,7 @@ on:
     branches: [main]
 
 env:
+  APP_PORT: ${{ secrets.PORT }}
   IMAGE_NAME: todo-app
   IMAGE_TAG: 1.0
   IMAGE_FULL: ${{ secrets.DOCKER_REGISTRY }}/$IMAGE_NAME:$IMAGE_TAG
