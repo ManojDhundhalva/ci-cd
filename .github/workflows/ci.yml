@@ -47,7 +47,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           
       - name: Build Docker Image
-        run: docker build -t $IMAGE_FULL .
+        run: |
+          IMAGE_FULL=${{ secrets.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          docker build -t $IMAGE_FULL .
 
       - name: Push Docker Image
-        run: docker push $IMAGE_FULL
+        run: |
+          IMAGE_FULL=${{ secrets.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          docker push $IMAGE_FULL
